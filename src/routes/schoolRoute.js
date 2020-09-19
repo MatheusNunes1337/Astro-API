@@ -5,7 +5,6 @@ const SchoolRoute = Router()
 SchoolRoute.get('/')
 SchoolRoute.post('/')
 SchoolRoute.delete('/:id')
-SchoolRoute.update('/:id')
-
+SchoolRoute.put('/:id')
 
 export default SchoolRoute
