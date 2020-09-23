@@ -1,7 +1,6 @@
-import mongoose from '../database'
+import mongoose from 'mongoose'
 
-
-const Schema = mongoose.Schema
+const { Schema } = mongoose
 
 const schoolSchema = new Schema({
 	 name: {
@@ -9,8 +8,7 @@ const schoolSchema = new Schema({
         unique: true
     },
     city: {
-        type: String,
-        
+        type: String,  
     },
     state: {
         type: String
@@ -20,7 +18,6 @@ const schoolSchema = new Schema({
    },
    email_resp: {
       type: String,
-      unique: true
    }
 })
 

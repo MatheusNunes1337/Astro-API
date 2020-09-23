@@ -5,21 +5,19 @@ const { Schema } = mongoose
 const questionSchema = new Schema({
   question: {
     type: String,
-    maxlength: [200, 'O título deve conter no máximo 200 caracteres'],
-    unique: true,
+    unique: true
   },
   category: {
-    type: String,
+    type: String
   },
   options: [
     {
-      type: String,
-      maxlength: [50, 'A opção deve conter no máximo 50 caracteres'],
+      type: String
     },
   ],
   answer: {
-    type: String,
-  },
+    type: String
+  }
 })
 
 const Question = mongoose.model('Question', questionSchema)

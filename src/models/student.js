@@ -1,4 +1,4 @@
-import mongoose from '../database'
+import mongoose from 'mongoose'
 import School from './school'
 
 const { Schema } = mongoose
@@ -17,11 +17,13 @@ const studentSchema = new Schema({
   },
   acertos: {
     // eslint-disable-next-line prettier/prettier
-    type: Number
+    type: Number,
+    default: 0
   },
   media: {
     // eslint-disable-next-line prettier/prettier
-    type: Number
+    type: Number,
+    default: 0
   },
 })
 

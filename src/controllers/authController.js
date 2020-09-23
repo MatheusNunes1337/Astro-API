@@ -21,7 +21,7 @@ const authController = {
       expiresIn: '1d',
     })
 
-    return res.status(201).send({ message: 'Admin logado no sistema', token })
+    return res.status(200).send({ message: 'Admin logado no sistema', token })
   },
 
   async register(req, res) {
@@ -41,7 +41,7 @@ const authController = {
       await admin.save()
       admin.password = undefined
       
-      return res.status(201).send({
+      return res.status(200).send({
         message: 'Admin cadastrado no sistema com sucesso',
         token: await jwt.sign({ id: admin._id }, process.env.SECRET, {
           expiresIn: '1d',
