@@ -47,13 +47,12 @@ describe('question test', () => {
   })
 
   it('should update a school city', async() => {
-      //const mockPost1 = { titulo: 'O maior planeta do sistema solar', conteudo: 'o maior é júpiter', 'categoria': 'planetas'}
+      
       const mockSchool = { name: 'Escola exemplo', city: 'Pelotas', state: 'RS',
       responsavel: 'Matheus Nunes', email_resp: 'matheus007@gmail.com'} 
 
-      //const response = await request(app).post('/post').send(mockPost1)
-
-      const school = School.findOne({ school: 'Qual é o planeta mais próximo do sol?' })
+   
+      const school = School.findOne({ name: 'Escola exemplo' })
 
       const response = await request(app).put(`school/${school._id}`).send(mockSchool)
 
