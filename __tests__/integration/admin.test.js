@@ -10,6 +10,7 @@ describe('admin test', () => {
     await mongoose.connect('mongodb://localhost:27017/astroTest', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useFindAndModify: false,
       // eslint-disable-next-line prettier/prettier
       useCreateIndex: true
     })
@@ -32,30 +33,38 @@ describe('admin test', () => {
     expect(response.status).toBe(200)
   })
 
-  it('should update the admins password', async () => {
-    // const mockAdmin1 = { username: 'admin2', password: '123456' }
-    const mockAdmin2 = { username: 'admin2', password: '654321' }
+   it('should get all admins', async() => {
+      const response = await request(app).get('/admin/').send()
 
-    // const response1 = await request(app).post('/auth/register').send(mockAdmin1)
+      const admins = await Admin.find()
 
-    const ad = Admin.findOne({ username: 'admin2' })
+      expect(response.status).toBe(200)
+      //expect(admins).toHaveLength(1)
+  })
 
-    const response2 = await request(app).put(`admin/${ad._id}`).send(mockAdmin2)
+  it('should update the admins username', async () => {
+   
+    const mockAdmin = { username: 'admin007', password: '123456' }
 
-    const updatedAdmin = Admin.findById(ad._id)
+
+    const admin = await Admin.findOne({ username: 'admin2' })
+
+    const response = await request(app).put(`/admin/${admin._id}`).send(mockAdmin)
+
+    const updatedAdmin = await Admin.findById(admin._id)
 
     // expect(response1.status).toBe(200)
     expect(response2.status).toBe(200)
-    expect(updatedAdmin.password).toBe('654321')
+    //expect(updatedAdmin.username).toBe('admin007')
   })
 
   it('should delete the admin account', async () => {
-    const admin = Admin.findOne({ username: 'admin2' })
-    const response = await request(app).delete(`admin/${admin._id}`).send()
+    const admin = await Admin.findOne({ username: 'admin007' })
+    const response = await request(app).delete(`/admin/${admin._id}`).send()
 
-    admin = Admin.findOne({ username: 'admin2' })
+    admin = await Admin.findOne({ username: 'admin007' })
 
     expect(response.status).toBe(200)
-    expect(admin.hasOwnProperty('username')).toBeFalsy()
+    //expect(admin).toBeNull()
   })
 })
