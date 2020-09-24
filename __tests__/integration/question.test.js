@@ -16,6 +16,7 @@ describe('question test', () => {
   })
 
   afterAll(async () => {
+    await Question.deleteMany({})
     await mongoose.close()
   })
   /*

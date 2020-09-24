@@ -1,23 +1,23 @@
-import mongoose from '../database'
+import mongoose from 'mongoose'
 
 const { Schema } = mongoose
 
 const questionSchema = new Schema({
   question: {
     type: String,
-    unique: true
+    unique: true,
   },
   category: {
-    type: String
+    type: String,
   },
   options: [
     {
-      type: String
+      type: String,
     },
   ],
   answer: {
-    type: String
-  }
+    type: String,
+  },
 })
 
 const Question = mongoose.model('Question', questionSchema)

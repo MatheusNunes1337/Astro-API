@@ -16,6 +16,7 @@ describe('admin test', () => {
   })
 
   afterAll(async () => {
+    await Admin.deleteMany({})
     await mongoose.close()
   })
   /*
@@ -31,33 +32,30 @@ describe('admin test', () => {
     expect(response.status).toBe(200)
   })
 
-  it('should update the admins password', async() => {
-      //const mockAdmin1 = { username: 'admin2', password: '123456' }
-      const mockAdmin2 = { username: 'admin2', password: '654321' }
+  it('should update the admins password', async () => {
+    // const mockAdmin1 = { username: 'admin2', password: '123456' }
+    const mockAdmin2 = { username: 'admin2', password: '654321' }
 
-      //const response1 = await request(app).post('/auth/register').send(mockAdmin1)
+    // const response1 = await request(app).post('/auth/register').send(mockAdmin1)
 
-      const admin = Admin.findOne({ username: 'admin2' })
+    const ad = Admin.findOne({ username: 'admin2' })
 
-      const response2 = await request(app).put(`admin/${admin._id}`).send(mockAdmin2)
+    const response2 = await request(app).put(`admin/${ad._id}`).send(mockAdmin2)
 
-      const updatedAdmin = Admin.findById(admin._id)
+    const updatedAdmin = Admin.findById(ad._id)
 
-      //expect(response1.status).toBe(200)
-      expect(response2.status).toBe(200)
-      expect(updatedAdmin.password).toBe('654321')
+    // expect(response1.status).toBe(200)
+    expect(response2.status).toBe(200)
+    expect(updatedAdmin.password).toBe('654321')
   })
 
-  it('should delete the admin account', async() => {
+  it('should delete the admin account', async () => {
+    const admin = Admin.findOne({ username: 'admin2' })
+    const response = await request(app).delete(`admin/${admin._id}`).send()
 
-      const admin = Admin.findOne({ username: 'admin2' })
-      const response = await request(app).delete(`admin/${admin._id}`).send()
+    admin = Admin.findOne({ username: 'admin2' })
 
-       const admin = Admin.findOne({ username: 'admin2' }) 
-
-      expect(response.status).toBe(200)
-      expect(admin.hasOwnProperty('username')).toBeFalsy()
+    expect(response.status).toBe(200)
+    expect(admin.hasOwnProperty('username')).toBeFalsy()
   })
-
-
 })

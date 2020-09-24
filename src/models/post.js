@@ -5,17 +5,19 @@ const { Schema } = mongoose
 const postSchema = new Schema({
   titulo: {
     type: String,
-    unique: true
+    unique: true,
   },
   categoria: {
-    type: String
+    type: String,
   },
   conteudo: {
-    type: String
+    type: String,
   },
-  files: [{
-    type: String
-  }]
+  files: [
+    {
+      type: String,
+    },
+  ],
 })
 
 const Post = mongoose.model('Post', postSchema)
