@@ -6,7 +6,12 @@ const questionController = {
   },
 
   async create(req, res) {
-    return res.status(200).send()
+    try {
+      await Question.create(req.body)
+      return res.status(200).send()
+    } catch (err) {
+      return res.status(400).send({ message: err })
+    }
   },
 
   async update(req, res) {
@@ -18,7 +23,7 @@ const questionController = {
   },
 
   async answer(req, res) {
-    return res.status(200).send()
+    return res.status(200)
   },
 }
 

@@ -6,7 +6,12 @@ const studentController = {
   },
 
   async create(req, res) {
-    return res.status(200).send()
+    try {
+      await Student.create(req.body)
+      return res.status(200).send()
+    } catch (err) {
+      return res.status(400).send({ message: err })
+    }
   },
 
   async update(req, res) {

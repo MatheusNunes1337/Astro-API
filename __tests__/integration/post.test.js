@@ -42,7 +42,7 @@ describe('post test', () => {
     const posts = await Post.find()
 
     expect(response.status).toBe(200)
-    //expect(posts).toHaveLength(1)
+    // expect(posts).toHaveLength(1)
   })
 
   it('should update a post category', async () => {
@@ -52,24 +52,27 @@ describe('post test', () => {
       categoria: 'planeta',
     }
 
-   
-    const post = await Post.findOne({ titulo: 'O maior planeta do sistema solar' })
+    const post = await Post.findOne({
+      titulo: 'O maior planeta do sistema solar',
+    })
 
     const response = await request(app).put(`/post/${post._id}`).send(mockPost)
 
     const updatedPost = await Post.findById(post._id)
 
     expect(response.status).toBe(200)
-    //expect(updatedPost.categoria).toBe('planeta')
+    // expect(updatedPost.categoria).toBe('planeta')
   })
 
   it('should delete a post', async () => {
-    const post = await Post.findOne({ titulo: 'O maior planeta do sistema solar' })
+    let post = await Post.findOne({
+      titulo: 'O maior planeta do sistema solar',
+    })
     const response = await request(app).delete(`/post/${post._id}`).send()
 
     post = await Post.findOne({ titulo: 'O maior planeta do sistema solar' })
 
     expect(response.status).toBe(200)
-    //expect(post).toBeNull()
+    // expect(post).toBeNull()
   })
 })

@@ -28,13 +28,17 @@ describe('question test', () => {
   */
 
   it('should create a new student', async () => {
+    const school = await School.create({
+      name: 'Escola exemplo',
+      city: 'Bagé',
+      state: 'RS',
+      responsavel: 'Matheus Nunes',
+      email_resp: 'matheus007@gmail.com',
+    })
 
-    const school = await School.create({ name: 'Escola exemplo', city: 'Bagé', state: 'RS',
-    responsavel: 'Matheus Nunes', email_resp: 'matheus007@gmail.com'})
+    const mockstudent1 = { name: 'Matheus', age: 22, school: school._id }
 
-    const mockstudent1 = { name: 'Matheus', age: 22, school: school._id}
-
-    const mockstudent2 = { name: 'John Doe', age: 18, school: school._id} 
+    const mockstudent2 = { name: 'John Doe', age: 18, school: school._id }
 
     const response1 = await request(app).post('/student/').send(mockstudent1)
     const response2 = await request(app).post('/student/').send(mockstudent2)
@@ -43,42 +47,38 @@ describe('question test', () => {
     expect(response2.status).toBe(200)
   })
 
-  it('should get all students', async() => {
-      const response = await request(app).get('/student').send()
+  it('should get all students', async () => {
+    const response = await request(app).get('/student').send()
 
-      const students = await Student.find()
+    const students = await Student.find()
 
-      expect(response.status).toBe(200)
-      //expect(students).toHaveLength(2)
+    expect(response.status).toBe(200)
+    // expect(students).toHaveLength(2)
   })
 
-  it('should update a student age', async() => {
-     
-      const newAge = { age: 19 }
+  it('should update a student age', async () => {
+    const newAge = { age: 19 }
 
+    const student = Student.findOne({ name: 'John Doe' })
 
-      const student = student.findOne({ name: 'John Doe' })
+    const response = await request(app)
+      .put(`/student/${student._id}`)
+      .send(newAge)
 
-      const response = await request(app).put(`/student/${student._id}`).send(newAge)
+    const updatedStudent = await Student.findById(student._id)
 
-      const updatedStudent = await Student.findById(student._id)
-
-      //expect(response1.status).toBe(200)
-      expect(response.status).toBe(200)
-      //expect(updatedStudent.age).toBe(19)
+    // expect(response1.status).toBe(200)
+    expect(response.status).toBe(200)
+    // expect(updatedStudent.age).toBe(19)
   })
 
-  it('should delete a student', async() => {
+  it('should delete a student', async () => {
+    let student = await Student.findOne({ name: 'John Doe' })
+    const response = await request(app).delete(`/student/${student._id}`).send()
 
-      const student = await student.findOne({ name: 'John Doe' })
-      const response = await request(app).delete(`/student/${student._id}`).send()
+    student = await Student.findOne({ name: 'John Doe' })
 
-      const student = await Student.findOne({ name: 'John Doe' })
-
-      expect(response.status).toBe(200)
-      //expect(student).toBeNull()
+    expect(response.status).toBe(200)
+    // expect(student).toBeNull()
   })
-
-
-
 })

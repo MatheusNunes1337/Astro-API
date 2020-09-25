@@ -17,7 +17,7 @@ describe('admin test', () => {
   })
 
   afterAll(async () => {
-    await Admin.deleteMany({})
+    await Admin.deleteMany()
     await mongoose.close()
   })
   /*
@@ -28,43 +28,42 @@ describe('admin test', () => {
 
   it('should create a new admin', async () => {
     const mockAdmin = { username: 'admin2', password: '123456' }
-    const response = await request(app).post('/auth/register').send(mockAdmin)
+    const response = await request(app).post('/auth/register/').send(mockAdmin)
 
     expect(response.status).toBe(200)
   })
 
-   it('should get all admins', async() => {
-      const response = await request(app).get('/admin/').send()
+  it('should get all admins', async () => {
+    const response = await request(app).get('/admin/').send()
 
-      const admins = await Admin.find()
+    const admins = await Admin.find()
 
-      expect(response.status).toBe(200)
-      //expect(admins).toHaveLength(1)
+    expect(response.status).toBe(200)
+    expect(admins).toHaveLength(1)
   })
 
   it('should update the admins username', async () => {
-   
     const mockAdmin = { username: 'admin007', password: '123456' }
-
 
     const admin = await Admin.findOne({ username: 'admin2' })
 
-    const response = await request(app).put(`/admin/${admin._id}`).send(mockAdmin)
+    const response = await request(app)
+      .put(`/admin/${admin._id}`)
+      .send(mockAdmin)
 
     const updatedAdmin = await Admin.findById(admin._id)
 
-    // expect(response1.status).toBe(200)
-    expect(response2.status).toBe(200)
-    //expect(updatedAdmin.username).toBe('admin007')
+    expect(response.status).toBe(200)
+    expect(updatedAdmin.username).toBe('admin007')
   })
 
   it('should delete the admin account', async () => {
-    const admin = await Admin.findOne({ username: 'admin007' })
+    let admin = await Admin.findOne({ username: 'admin007' })
     const response = await request(app).delete(`/admin/${admin._id}`).send()
 
     admin = await Admin.findOne({ username: 'admin007' })
 
     expect(response.status).toBe(200)
-    //expect(admin).toBeNull()
+    expect(admin).toBeNull()
   })
 })

@@ -11,8 +11,10 @@ const authController = {
 
     const admin = await Admin.findOne({ username }).select('password')
 
-    if(!admin)
-      return res.status(400).send({'err': 'Nome de usuário informado está incorreto'});
+    if (!admin)
+      return res
+        .status(400)
+        .send({ err: 'Nome de usuário informado está incorreto' })
 
     if (!(await bcrypt.compare(password, admin.password)))
       return res.status(400).send({ err: 'A senha informada está incorreta' })
@@ -28,7 +30,7 @@ const authController = {
     const { username, password } = req.body
 
     try {
-      const administrador = await Admin.findOne({"username": username})
+      const administrador = await Admin.findOne({ username })
 
       if (administrador)
         return res.status(400).send({ err: 'Esse nome de usuário já existe' })
@@ -37,10 +39,10 @@ const authController = {
 
       req.body.password = hash
 
-      let admin = await new Admin(req.body)
+      const admin = await new Admin(req.body)
       await admin.save()
       admin.password = undefined
-      
+
       return res.status(200).send({
         message: 'Admin cadastrado no sistema com sucesso',
         token: await jwt.sign({ id: admin._id }, process.env.SECRET, {

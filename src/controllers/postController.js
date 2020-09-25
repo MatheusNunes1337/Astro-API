@@ -6,7 +6,12 @@ const postController = {
   },
 
   async create(req, res) {
-    return res.status(200).send()
+    try {
+      await Post.create(req.body)
+      return res.status(200).send({ message: 'Post criado com sucesso' })
+    } catch (err) {
+      return res.status(400).send({ message: err })
+    }
   },
 
   async update(req, res) {
