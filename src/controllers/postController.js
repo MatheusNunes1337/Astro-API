@@ -20,7 +20,7 @@ const postController = {
 
   async delete(req, res) {
     return res.status(200).send()
-  },
+  }
 }
 
 export default postController

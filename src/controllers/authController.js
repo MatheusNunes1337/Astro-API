@@ -52,7 +52,7 @@ const authController = {
     } catch (err) {
       return res.status(400).send({ message: err })
     }
-  },
+  }
 }
 
 export default authController

@@ -2,12 +2,18 @@ import Student from '../models/student'
 
 const studentController = {
   async index(req, res) {
-    return res.status(200).send()
+    try {
+      const students = await Student.find()
+      return res.status(200).send(students)
+    } catch (err) {
+      return res.status(400).send({ message: err })
+    }
   },
 
   async create(req, res) {
     try {
-      await Student.create(req.body)
+      const student = await Student.create(req.body)
+      req.studentId = student._id
       return res.status(200).send()
     } catch (err) {
       return res.status(400).send({ message: err })
@@ -15,12 +21,22 @@ const studentController = {
   },
 
   async update(req, res) {
-    return res.status(200).send()
+    try {
+      await Student.findByIdAndUpdate(req.params.id, req.body)
+      return res.status(200).send({ message: 'Informações do aluno atualizadas com sucesso' })
+    } catch (err) {
+      return res.status(400).send({ message: err })
+    }
   },
 
   async delete(req, res) {
-    return res.status(200).send()
-  },
+    try {
+      await Student.findByIdAndDelete(req.params.id)
+      return res.status(200).send({ message: 'Aluno deletado com sucesso' })
+    } catch (err) {
+      return res.status(400).send({ message: err })
+    }
+  }
 }
 
 export default studentController
