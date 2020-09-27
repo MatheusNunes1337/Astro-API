@@ -15,7 +15,7 @@ routes.use('/auth', authRoute)
 routes.use('/question', questionRoute)
 routes.use('/student', studentRoute)
 routes.use('/admin', adminRoute)
-// routes.use(auth)
+//routes.use(auth)
 routes.use('/school', schoolRoute)
 routes.use('/post', postRoute)
 

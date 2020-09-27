@@ -1,5 +1,13 @@
-import mongoose from 'mongoose'
+import dotenv from 'dotenv'
 import School from './school'
+
+dotenv.config()
+
+if(process.env.NODE_ENV === 'test') {
+   import mongoose from 'mongoose'
+} else {
+  import mongoose from '../database'
+}
 
 const { Schema } = mongoose
 
@@ -13,7 +21,7 @@ const studentSchema = new Schema({
   school: {
     type: Schema.Types.ObjectId,
     // eslint-disable-next-line prettier/prettier
-    req: 'School'
+    ref: 'School'
   },
   acertos: {
     // eslint-disable-next-line prettier/prettier
