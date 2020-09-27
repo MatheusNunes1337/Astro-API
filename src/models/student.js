@@ -18,12 +18,12 @@ const studentSchema = new Schema({
   acertos: {
     // eslint-disable-next-line prettier/prettier
     type: Number,
-    default: 0
+    default: 0,
   },
   media: {
     // eslint-disable-next-line prettier/prettier
     type: Number,
-    default: 0
+    default: 0,
   },
 })
 

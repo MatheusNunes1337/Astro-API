@@ -6,7 +6,7 @@ import School from '../../src/models/school'
 
 const mongoose = require('mongoose')
 
-describe('question test', () => {
+describe('student test', () => {
   beforeAll(async () => {
     await mongoose.connect('mongodb://localhost:27017/astroTest', {
       useNewUrlParser: true,
@@ -18,7 +18,8 @@ describe('question test', () => {
   })
 
   afterAll(async () => {
-    await Student.deleteMany({})
+    await Student.deleteMany()
+    await School.deleteMany()
     await mongoose.close()
   })
   /*
@@ -53,23 +54,23 @@ describe('question test', () => {
     const students = await Student.find()
 
     expect(response.status).toBe(200)
-    // expect(students).toHaveLength(2)
+    expect(students).toHaveLength(2)
   })
 
   it('should update a student age', async () => {
-    const newAge = { age: 19 }
+    const mockStudent = { name: 'John doe', age: 19, school: 15 }
 
-    const student = Student.findOne({ name: 'John Doe' })
+    const student = await Student.findOne({ name: 'John Doe' })
 
     const response = await request(app)
       .put(`/student/${student._id}`)
-      .send(newAge)
+      .send(mockStudent)
 
     const updatedStudent = await Student.findById(student._id)
 
-    // expect(response1.status).toBe(200)
     expect(response.status).toBe(200)
-    // expect(updatedStudent.age).toBe(19)
+    expect(updatedStudent.age).toBe(19)
+    expect(updatedStudent.name).toBe('John Doe')
   })
 
   it('should delete a student', async () => {
@@ -79,6 +80,6 @@ describe('question test', () => {
     student = await Student.findOne({ name: 'John Doe' })
 
     expect(response.status).toBe(200)
-    // expect(student).toBeNull()
+    expect(student).toBeNull()
   })
 })

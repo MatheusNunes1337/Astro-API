@@ -12,8 +12,8 @@ const studentController = {
 
   async create(req, res) {
     try {
-      const student = await Student.create(req.body)
-      req.studentId = student._id
+      await Student.create(req.body)
+      // geração do token aqui
       return res.status(200).send()
     } catch (err) {
       return res.status(400).send({ message: err })
@@ -23,7 +23,9 @@ const studentController = {
   async update(req, res) {
     try {
       await Student.findByIdAndUpdate(req.params.id, req.body)
-      return res.status(200).send({ message: 'Informações do aluno atualizadas com sucesso' })
+      return res
+        .status(200)
+        .send({ message: 'Informações do aluno atualizadas com sucesso' })
     } catch (err) {
       return res.status(400).send({ message: err })
     }
@@ -36,7 +38,7 @@ const studentController = {
     } catch (err) {
       return res.status(400).send({ message: err })
     }
-  }
+  },
 }
 
 export default studentController
