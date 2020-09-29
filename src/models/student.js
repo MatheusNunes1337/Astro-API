@@ -27,12 +27,7 @@ const studentSchema = new Schema({
     // eslint-disable-next-line prettier/prettier
     type: Number,
     default: 0,
-  },
-  media: {
-    // eslint-disable-next-line prettier/prettier
-    type: Number,
-    default: 0,
-  },
+  }
 })
 
 const Student = mongoose.model('Student', studentSchema)

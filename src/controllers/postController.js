@@ -1,4 +1,6 @@
 import Post from '../models/post'
+import multer from 'multer'
+import multerConfig from '../config/multer'
 
 const postController = {
   async index(req, res) {
