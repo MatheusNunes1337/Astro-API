@@ -5,7 +5,7 @@ const multerConfig = {
 	dest: resolve(__dirname, '..', '..', 'temp', 'uploads'),
 	storage: multer.diskStorage({
 		destination: function (req, file, cb) {
-			cb(null, resolve(__dirname, '..', '..', 'temp', 'uploads'))
+			cb(null, resolve(__dirname, '..', '..', 'temp', 'uploads', 'others'))
 		},
 		filename: function (req, file, cb) {
     		cb(null, file.fieldname + '-' + Date.now())

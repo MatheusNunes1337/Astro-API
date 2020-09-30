@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Apostila do conteúdo</h1>
+	<article>
+		<% questions.forEach( question => { %>
+			<section>
+				<p class="card-text"><%= question.question %></p>
+				<ol>
+					<% question.options.forEach( option => { %>
+						<li><%= option %></li>
+					<% }) %>
+				</ol>
+				<span>Resposta:</span>
+				<span><%= question.answer %></span>
+			</section>
+			<hr>
+		<% }) %>
+	</article>
+</body>
+</html>

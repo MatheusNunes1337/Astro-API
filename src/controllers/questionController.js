@@ -4,6 +4,12 @@ import Student from '../models/student'
 const questionController = {
   async index(req, res) {
     try {
+
+      if(req.query.p) {
+          const question = await Question.findById(req.query.q)
+          return res.status(200).send({question})
+      }
+
       const questions = await Question.find()
       return res.status(200).send({questions})
     } catch (err) {
