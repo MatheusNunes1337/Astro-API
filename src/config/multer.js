@@ -3,7 +3,7 @@ import { resolve } from 'path'
 
 const multerConfig = {
 	dest: resolve(__dirname, '..', '..', 'temp', 'uploads'),
-	storage: diskStorage({
+	storage: multer.diskStorage({
 		destination: function (req, file, cb) {
 			cb(null, resolve(__dirname, '..', '..', 'temp', 'uploads'))
 		},
@@ -19,9 +19,9 @@ const multerConfig = {
 			'image/jpeg',
 			'image/pjpeg',
 			'image/png',
-			'image/gif',
-			'application/vnd.ms-excel',
-			'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+			'image/gif'
+			//'application/vnd.ms-excel',
+			//'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 		]
 
 		if(formats.includes(file.mimetype)) {
