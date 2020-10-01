@@ -7,6 +7,8 @@ dotenv.config()
 
 app.use(express.json())
 
+app.use(express.static('public'))
+
 app.use(routes)
 
 app.get('/', (req, res) => {

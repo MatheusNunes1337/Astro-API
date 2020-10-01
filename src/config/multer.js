@@ -1,14 +1,14 @@
 import multer from 'multer'
-import { resolve } from 'path'
+import * as path from 'path';
 
 const multerConfig = {
-	dest: resolve(__dirname, '..', '..', 'temp', 'uploads'),
+	dest: path.resolve(__dirname, '..', '..', 'public', 'images'),
 	storage: multer.diskStorage({
 		destination: function (req, file, cb) {
-			cb(null, resolve(__dirname, '..', '..', 'temp', 'uploads', 'others'))
+			cb(null, path.resolve(__dirname, '..', '..', 'public', 'images'))
 		},
 		filename: function (req, file, cb) {
-    		cb(null, file.fieldname + '-' + Date.now())
+    		cb(null, path.parse(file.originalname).name + Date.now() + path.extname(file.originalname))
   		}
 	}),
 	limits: {

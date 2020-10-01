@@ -2,6 +2,7 @@ const pdf = require('html-pdf')
 const ejs = require('ejs')
 import { resolve } from 'path'
 import Question from '../models/question'
+import Post from '../models/post'
 
 
 const bookController = {
@@ -11,13 +12,14 @@ const bookController = {
     try {
 
       const questoes = await Question.find()
+      const postagens = await Post.find()
    
-      ejs.renderFile(`${__dirname}/../view/book.ejs`, {questions: questoes}, (err, book) => {
+      ejs.renderFile(`${__dirname}/../view/book.ejs`, {questions: questoes, posts: postagens}, (err, book) => {
           if(err)
             console.log(err)
           else {
             const options = { filename: 'apostila.pdf', format: 'A4', 
-            orientation: 'portrait', directory: resolve(__dirname, '..', '..', 'temp', 'uploads') ,type: "pdf" }
+            orientation: 'portrait', directory: resolve(__dirname, '..', '..', 'public') ,type: "pdf" }
 
             pdf.create(book, options).toFile(function(err, res) {
                 if (err)

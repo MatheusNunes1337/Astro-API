@@ -1,15 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="/css/style.css"">
 	<title></title>
+	<style type="text/css">
+
+		@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+		
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Roboto', sans-serif;
+		}
+
+	
+		.post, .question {
+			margin-top: 15px;
+		}
+
+		article p, .question ol > li, span{
+			font-size: 10px;
+		}
+
+		article  {
+			margin: 15px 60px;
+		} 
+
+		article h3 {
+			font-size: 14px;
+			margin: 15px 0 15px 0;
+		}
+
+		
+
+		.question ol {
+			margin-top: 10px;
+		}
+
+		.question ol > li {
+    		margin-left: 15px;
+		}		
+
+
+
+	</style>
 </head>
 <body>
-	<h1>Apostila do conteúdo</h1>
 	<article>
-		<% questions.forEach( question => { %>
-			<section>
-				<p class="card-text"><%= question.question %></p>
-				<ol>
+		<h2>Astrofono</h2>
+		<% posts.forEach( post => { %>
+			<section class="post">
+				<h3 class="titulo"><%= post.titulo %></h3>
+				<p align="justify" class="conteudo"><%= post.conteudo %></p>
+			</section>
+		<% }) %>
+		<h3>Respostas do quiz</h3>
+		<% questions.forEach((question, index) => { %>
+			<section class="question">
+				<p><%= index+1 + " - " + question.question %></p>
+				<ol style="list-style-type: lower-latin">
 					<% question.options.forEach( option => { %>
 						<li><%= option %></li>
 					<% }) %>
@@ -17,7 +70,6 @@
 				<span>Resposta:</span>
 				<span><%= question.answer %></span>
 			</section>
-			<hr>
 		<% }) %>
 	</article>
 </body>
