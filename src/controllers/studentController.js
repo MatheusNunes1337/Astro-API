@@ -1,5 +1,5 @@
-import Student from '../models/student'
 import * as jwt from 'jsonwebtoken'
+import Student from '../models/student'
 
 const studentController = {
   async index(req, res) {
@@ -14,10 +14,10 @@ const studentController = {
   async create(req, res) {
     try {
       const student = await Student.create(req.body)
-      const token =  await jwt.sign({ id: student._id }, process.env.SECRET, {
-         expiresIn: '1d',
-       })
-      return res.status(200).send({token: token})
+      const token = await jwt.sign({ id: student._id }, process.env.SECRET, {
+        expiresIn: '1d',
+      })
+      return res.status(200).send({ token })
     } catch (err) {
       return res.status(400).send({ message: err })
     }
@@ -25,10 +25,15 @@ const studentController = {
 
   async update(req, res) {
     try {
-      const student = await Student.findByIdAndUpdate(req.params.id, {...req.body}, {new: true}).populate('school')
-      return res
-        .status(200)
-        .send({ message: 'Informações do aluno atualizadas com sucesso', informações: student })
+      const student = await Student.findByIdAndUpdate(
+        req.params.id,
+        { ...req.body },
+        { new: true }
+      ).populate('school')
+      return res.status(200).send({
+        message: 'Informações do aluno atualizadas com sucesso',
+        informações: student,
+      })
     } catch (err) {
       return res.status(400).send({ message: err })
     }
