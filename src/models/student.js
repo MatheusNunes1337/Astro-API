@@ -1,13 +1,5 @@
-import dotenv from 'dotenv'
+import mongoose from '../database'
 import School from './school'
-
-dotenv.config()
-
-if(process.env.NODE_ENV === 'test') {
-   import mongoose from 'mongoose'
-} else {
-  import mongoose from '../database'
-}
 
 const { Schema } = mongoose
 
@@ -27,7 +19,7 @@ const studentSchema = new Schema({
     // eslint-disable-next-line prettier/prettier
     type: Number,
     default: 0,
-  }
+  },
 })
 
 const Student = mongoose.model('Student', studentSchema)

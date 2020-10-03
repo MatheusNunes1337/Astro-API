@@ -1,11 +1,5 @@
-import dotenv from 'dotenv'
-dotenv.config()
-
-if(process.env.NODE_ENV === 'test') {
-   import mongoose from 'mongoose'
-} else {
-  import mongoose from '../database'
-}
+import mongoose from '../database'
+import File from './file'
 
 const { Schema } = mongoose
 
@@ -22,7 +16,8 @@ const postSchema = new Schema({
   },
   files: [
     {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: 'File',
     },
   ],
 })

@@ -25,6 +25,7 @@ const bookController = {
               type: 'pdf',
             }
 
+            console.log(resolve(__dirname, '..', '..', 'public', 'images'))
             pdf.create(book, options).toFile(function (err, res) {
               if (err) return console.log({ message: err })
             })
