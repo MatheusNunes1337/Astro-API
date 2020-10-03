@@ -21,15 +21,18 @@ const postController = {
 
   async create(req, res) {
     try {
-      let files
 
-      files = req.files.map(async (file) => {
-        // eslint-disable-next-line prefer-const
-        let arquivo = await File.create({ filename: file.filename })
-        return arquivo._id
-      })
+      if(req.files) {
+        let files
 
-      req.body.files = await Promise.all(files)
+        files = req.files.map(async (file) => {
+          // eslint-disable-next-line prefer-const
+          let arquivo = await File.create({ filename: file.filename })
+          return arquivo._id
+        })
+
+        req.body.files = await Promise.all(files)
+      }  
 
       const post = await Post.create(req.body)
       return res.status(200).send({ 'Post criado com sucesso': post })

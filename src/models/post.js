@@ -14,6 +14,9 @@ const postSchema = new Schema({
   conteudo: {
     type: String,
   },
+  planeta: {
+    type: String
+  },
   files: [
     {
       type: Schema.Types.ObjectId,

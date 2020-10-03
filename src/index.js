@@ -8,13 +8,16 @@ dotenv.config()
 
 app.use(express.json())
 
-app.use('/public', express.static(path.join(__dirname, '/public')))
+//stattic files
+app.use(express.static('./public'))
+
+//set views
+app.set("view engine", "ejs");
+app.set("views", './src/views');
+
 
 app.use(routes)
 
-app.get('/', (req, res) => {
-  res.send(process.env.PORT)
-})
 
 app.listen(process.env.PORT || 8080)
 

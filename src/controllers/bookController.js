@@ -1,37 +1,36 @@
-import { resolve } from 'path'
+import * as path from 'path'
 import Question from '../models/question'
 import Post from '../models/post'
 
-const pdf = require('html-pdf')
-const ejs = require('ejs')
+import * as pdf from 'html-pdf'
+import * as ejs from 'ejs'
 
 const bookController = {
   async create(req, res) {
     try {
       const questoes = await Question.find()
-      const postagens = await Post.find()
+      const postagens = await Post.find().populate('files')
 
-      ejs.renderFile(
-        `${__dirname}/../view/book.ejs`,
-        { questions: questoes, posts: postagens },
-        (err, book) => {
-          if (err) console.log(err)
-          else {
-            const options = {
-              filename: 'apostila.pdf',
-              format: 'A4',
-              orientation: 'portrait',
-              directory: resolve(__dirname, '..', '..', 'public', 'images'),
-              type: 'pdf',
-            }
-
-            console.log(resolve(__dirname, '..', '..', 'public', 'images'))
-            pdf.create(book, options).toFile(function (err, res) {
-              if (err) return console.log({ message: err })
-            })
+      const book = await ejs.renderFile(
+        `${__dirname}/../views/book.ejs`,
+        { questions: questoes, posts: postagens })
+       
+        const options = {
+          type: 'pdf',
+          format: 'A4',
+          orientation: 'portrait',
+          base: "http://localhost:3000",
+          border: {
+            top: "1in",            
+            bottom: "1in"
           }
-        }
-      )
+        }  
+        
+        pdf.create(book, options).toFile(
+          path.resolve(__dirname, '..', '..', 'public', 'material', 'apostila.pdf'), 
+          function(err, res){
+          
+        })  
 
       return res.status(200).send({ message: 'pdf gerado com sucesso' })
     } catch (err) {
