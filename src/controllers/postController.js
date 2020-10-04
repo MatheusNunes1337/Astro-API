@@ -8,11 +8,11 @@ const postController = {
   async index(req, res) {
     try {
       if (req.query.p) {
-        const post = await Post.findById(req.query.p).populate('files')
+        const post = await Post.findById(req.query.p)
         return res.status(200).send({ post })
       }
 
-      const posts = await Post.find().populate('files')
+      const posts = await Post.find()
       return res.status(200).send({ posts })
     } catch (err) {
       return res.status(400).send({ message: err })
@@ -20,8 +20,10 @@ const postController = {
   },
 
   async create(req, res) {
+
     try {
 
+      /*
       if(req.files) {
         let files
 
@@ -32,17 +34,20 @@ const postController = {
         })
 
         req.body.files = await Promise.all(files)
-      }  
+      }
+      */  
 
       const post = await Post.create(req.body)
       return res.status(200).send({ 'Post criado com sucesso': post })
     } catch (err) {
       return res.status(400).send({ message: err })
     }
+    
   },
 
   async update(req, res) {
     try {
+      /*
       if (req.files) {
         const post = await Post.findById(req.params.id).populate('files')
         if (post.files.length !== 0) {
@@ -71,6 +76,8 @@ const postController = {
 
         req.body.files = await Promise.all(files)
       }
+
+      */
 
       const post = await Post.findByIdAndUpdate(
         req.params.id,

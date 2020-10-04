@@ -16,13 +16,7 @@ const postSchema = new Schema({
   },
   planeta: {
     type: String
-  },
-  files: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'File',
-    },
-  ],
+  }
 })
 
 const Post = mongoose.model('Post', postSchema)

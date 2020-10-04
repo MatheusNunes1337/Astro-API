@@ -9,7 +9,7 @@ const bookController = {
   async create(req, res) {
     try {
       const questoes = await Question.find()
-      const postagens = await Post.find().populate('files')
+      const postagens = await Post.find()
 
       const book = await ejs.renderFile(
         `${__dirname}/../views/book.ejs`,

@@ -3,23 +3,14 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 	<title></title>
+	</style>
 </head>
 <body>
 	<article>
 		<h2>Astrofono</h2>
 		<% posts.forEach( post => { %>
 			<section class="post">
-				<h3 class="titulo"><%= post.titulo %></h3>
-				<p align="justify" class="conteudo"><%= post.conteudo %></p>
-				<% if(post.files.length !== 0) { %>
-					<%  post.files.forEach (file => { %>
-						<figure>
-							<img src="/images/<%= file.filename %>" 
-							alt="<%= file.alt %>" width="225" height="225" >
-							<figcaption><%= file.description %></figcaption>
-						</figure>
-					<% }) %>
-				<% } %>	
+				<%- post.conteudo %>
 			</section>
 		<% }) %>
 		<h3>Respostas do quiz</h3>
