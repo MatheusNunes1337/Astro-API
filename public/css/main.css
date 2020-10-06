@@ -1,52 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
 		
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-		}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 
-		body {
-			font-family: 'Roboto', sans-serif;
-		}
+body {
+	font-family: 'Roboto', sans-serif;
+}
 
-		h2 {
-			margin-bottom: 30px;
-		}
+h2 {
+	margin-bottom: 30px;
+}
 
-		.post {
-			margin: 45px 0px;
-		}
+.post {
+	margin: 45px 0px;
+}
 
-		article p, .question ol > li, span, figcaption {
-			font-size: 12px;
-		}
+article  {
+	margin: 15px 80px;
+} 
 
-		article  {
-			margin: 15px 80px;
-		} 
+article h3 {
+	margin: 15px 0 15px 0;
+}
 
-		article h3 {
-			margin: 15px 0 15px 0;
-		}
+.question ol, .post ol {
+	margin: 9px 0px;
+}
 
-		.question ol {
-			margin: 9px 0px;
-		}
+.post p {
+	margin: 7px 0px 7px 0px;
+}
 
-		.question ol > li {
-    		margin-left: 15px;
-		}
+.question ol > li, .post ol > li {
+	margin-left: 15px;
+}
 
-		.post img {
-			display: block;
-			margin: 25px auto 10px auto;
-		}
-
-		.post figcaption {
-			text-align: center;
-		}
-
-		.question {
-			margin-bottom: 15px;
-		}
+.question {
+	margin-bottom: 15px;
+}
