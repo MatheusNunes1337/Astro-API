@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 import dotenv from 'dotenv'
 import * as path from 'path'
 import routes from './routes'
@@ -8,7 +9,11 @@ dotenv.config()
 
 app.use(express.json())
 
-//stattic files
+//cors
+app.use(cors())
+app.options('*', cors())
+
+//static files
 app.use(express.static('./public'))
 
 //set views
@@ -19,6 +24,6 @@ app.set("views", './src/views');
 app.use(routes)
 
 
-app.listen(process.env.PORT || 8080)
+app.listen(process.env.port || 3333)
 
 export default app
