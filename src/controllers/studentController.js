@@ -4,6 +4,12 @@ import Student from '../models/student'
 const studentController = {
   async index(req, res) {
     try {
+
+      if (req.query.s) {
+        const student = await Post.findById(req.query.s).populate('school')
+        return res.status(200).send({ post })
+      }
+
       const students = await Student.find().populate('school')
       return res.status(200).send(students)
     } catch (err) {

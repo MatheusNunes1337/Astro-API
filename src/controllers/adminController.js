@@ -3,10 +3,10 @@ import bcrypt from 'bcrypt'
 
 
 const adminController = {
-  async index(req, res) {
+  async find(req, res) {
     try {
-      const admins = await Admin.find()
-      return res.status(200).send(admins)
+      const admin = await Admin.findById(req.adminId)
+      return res.status(200).send(admin.username)
     } catch (err) {
       return res.status(400).send({ message: err })
     }
@@ -16,8 +16,6 @@ const adminController = {
 
     try {
       if(req.body.password) {
-        console.log('tem senha')
-         console.log(req.body)
         const hash = await bcrypt.hash(req.body.password, 10)
         console.log(hash)
         req.body.password = hash

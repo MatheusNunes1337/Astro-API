@@ -5,7 +5,7 @@ const questionController = {
   async index(req, res) {
     try {
 
-      if(req.query.p) {
+      if(req.query.q) {
           const question = await Question.findById(req.query.q)
           return res.status(200).send({question})
       }

@@ -3,6 +3,12 @@ import School from '../models/school'
 const schoolController = {
   async index(req, res) {
     try {
+
+      if (req.query.s) {
+        const school = await Post.findById(req.query.s)
+        return res.status(200).send({ school })
+      }
+
       const schools = await School.find()
       return res.status(200).send(schools)
     } catch (err) {
