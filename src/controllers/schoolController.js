@@ -5,8 +5,8 @@ const schoolController = {
     try {
 
       if (req.query.s) {
-        const school = await Post.findById(req.query.s)
-        return res.status(200).send({ school })
+        const school = await School.findById(req.query.s)
+        return res.status(200).send(school)
       }
 
       const schools = await School.find()
@@ -19,7 +19,7 @@ const schoolController = {
   async create(req, res) {
     try {
       const school = await School.create(req.body)
-      return res.status(200).send({"Instituição cadastrada com sucesso": school})
+      return res.status(200).send({message: "Instituição cadastrada com sucesso"})
     } catch (err) {
       return res.status(400).send({ message: err })
     }

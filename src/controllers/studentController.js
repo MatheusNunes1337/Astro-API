@@ -7,7 +7,7 @@ const studentController = {
 
       if (req.query.s) {
         const student = await Post.findById(req.query.s).populate('school')
-        return res.status(200).send({ post })
+        return res.status(200).send(student)
       }
 
       const students = await Student.find().populate('school')

@@ -8,16 +8,17 @@ dotenv.config()
 const authController = {
   async login(req, res) {
     const { username, password } = req.body
+    console.log(req.body)
 
     const admin = await Admin.findOne({ username }).select('password')
 
     if (!admin)
       return res
         .status(400)
-        .send({ err: 'Nome de usuário informado está incorreto' })
+        .send({ message: 'Nome de usuário informado está incorreto' })
 
     if (!(await bcrypt.compare(password, admin.password)))
-      return res.status(400).send({ err: 'A senha informada está incorreta' })
+      return res.status(400).send({ message: 'A senha informada está incorreta' })
 
     const token = await jwt.sign({ id: admin._id }, process.env.SECRET, {
       expiresIn: '1d',

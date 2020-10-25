@@ -9,11 +9,11 @@ const postController = {
     try {
       if (req.query.p) {
         const post = await Post.findById(req.query.p)
-        return res.status(200).send({ post })
+        return res.status(200).send(post)
       }
 
       const posts = await Post.find()
-      return res.status(200).send({ posts })
+      return res.status(200).send(posts)
     } catch (err) {
       return res.status(400).send({ message: err })
     }
@@ -37,8 +37,8 @@ const postController = {
       }
       */  
 
-      const post = await Post.create(req.body)
-      return res.status(200).send({ 'Post criado com sucesso': post })
+      await Post.create(req.body)
+      return res.status(200).send({message: 'Post criado com sucesso'})
     } catch (err) {
       return res.status(400).send({ message: err })
     }

@@ -7,7 +7,7 @@ const questionController = {
 
       if(req.query.q) {
           const question = await Question.findById(req.query.q)
-          return res.status(200).send({question})
+          return res.status(200).send(question)
       }
 
       const questions = await Question.find()

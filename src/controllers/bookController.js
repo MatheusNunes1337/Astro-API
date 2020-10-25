@@ -19,7 +19,7 @@ const bookController = {
           type: 'pdf',
           format: 'A4',
           orientation: 'portrait',
-          base: "http://localhost:3000",
+          base: "http://localhost:3333",
           border: {
             top: "1in",            
             bottom: "1in"
