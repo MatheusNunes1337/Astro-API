@@ -11,7 +11,7 @@ const questionController = {
       }
 
       const questions = await Question.find()
-      return res.status(200).send({questions})
+      return res.status(200).send(questions)
     } catch (err) {
       return res.status(400).send({ message: err })
     }
