@@ -5,7 +5,7 @@ dotenv.config()
 
 if (process.env.NODE_ENV === 'development') {
   mongoose
-    .connect(process.env.mongo_url, {
+    .connect(process.env.MONGO_URL || 'mongodb://localhost:27017/astroFono', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false,
