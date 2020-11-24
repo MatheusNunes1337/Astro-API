@@ -1,5 +1,4 @@
 import mongoose from '../database'
-import File from './file'
 
 const { Schema } = mongoose
 
