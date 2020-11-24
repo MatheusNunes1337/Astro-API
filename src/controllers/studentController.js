@@ -17,6 +17,15 @@ const studentController = {
     }
   },
 
+  async find(req, res) {
+      try {
+        const student = await Post.findById(studentId).populate('school')
+        return res.status(200).send(student)    
+      } catch (err) {
+          return res.status(400).send({ message: err })
+      }
+  },
+
   async create(req, res) {
     try {
       const student = await Student.create(req.body)
