@@ -7,7 +7,7 @@
     "test": "jest",
     "dev": "nodemon src/index --ignore __tests__",
     "build": "sucrase ./src -d ./dist  --transforms imports",
-    "start": "node dist/index"
+    "start": "node src/index"
   },
   "keywords": [],
   "author": "",
