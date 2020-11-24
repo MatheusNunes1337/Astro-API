@@ -2,7 +2,6 @@ import * as fs from 'fs'
 import { promisify } from 'util'
 import * as path from 'path'
 import Post from '../models/post'
-import File from '../models/file'
 
 const postController = {
   async index(req, res) {
