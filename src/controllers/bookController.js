@@ -27,9 +27,10 @@ const bookController = {
         }  
         
         pdf.create(book, options).toFile(
-          path.resolve(__dirname, '..', '..', 'public', 'material', 'apostila.pdf'), 
+          path.resolve(__dirname, '..', 'assets', 'material', 'apostila.pdf'), 
           function(err, res){
-          
+            if (err) return console.log(err);
+            console.log(res)
         })  
 
       return res.status(200).send({ message: 'pdf gerado com sucesso' })
@@ -39,7 +40,7 @@ const bookController = {
   },
 
   async download(req, res) {
-    const apostila = `${__dirname}../../../apostila.pdf`
+    const apostila = `${__dirname}../assets/material/apostila.pdf`
     res.status(200).download(apostila)
   },
 }

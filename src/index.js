@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import * as path from 'path'
-import routes from './routes/index.js'
+import routes from './routes'
 
 const app = express()
 dotenv.config()
@@ -14,7 +14,7 @@ app.use(cors())
 app.options('*', cors())
 
 //static files
-app.use(express.static('./public'))
+//app.use(express.static('./public'))
 
 //set views
 app.set("view engine", "ejs");
