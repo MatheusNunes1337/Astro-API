@@ -1,4 +1,5 @@
 import * as path from 'path'
+import dotenv from 'dotenv'
 import Question from '../models/question'
 import Post from '../models/post'
 
@@ -19,7 +20,7 @@ const bookController = {
           type: 'pdf',
           format: 'A4',
           orientation: 'portrait',
-          base: "http://localhost:3333",
+          base: process.env.APP_URL,
           border: {
             top: "1in",            
             bottom: "1in"
@@ -40,7 +41,7 @@ const bookController = {
   },
 
   async download(req, res) {
-    const apostila = `${__dirname}../assets/material/apostila.pdf`
+    const apostila = path.resolve(__dirname, '..', 'assets', 'material', 'apostila.pdf')
     res.status(200).download(apostila)
   },
 }

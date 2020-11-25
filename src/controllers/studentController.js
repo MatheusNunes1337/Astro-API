@@ -20,7 +20,7 @@ const studentController = {
 
   async find(req, res) {
       try {
-        const student = await Student.findById(studentId).populate('school')
+        const student = await Student.findById(req.studentId).populate('school')
         return res.status(200).send(student)    
       } catch (err) {
           return res.status(400).send({ message: err })
