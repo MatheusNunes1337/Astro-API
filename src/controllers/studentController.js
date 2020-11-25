@@ -29,9 +29,6 @@ const studentController = {
 
   async create(req, res) {
     try {
-      const { school } = req.body
-      const instituicao = await School.find({name: school})
-      req.body.school = instituicao._id
       const student = await Student.create(req.body)
       const token = await jwt.sign({ id: student._id }, process.env.SECRET, {
         expiresIn: '1d',
