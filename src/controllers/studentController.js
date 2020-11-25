@@ -1,12 +1,13 @@
 import * as jwt from 'jsonwebtoken'
 import Student from '../models/student'
+import School from '../models/school'
 
 const studentController = {
   async index(req, res) {
     try {
 
       if (req.query.s) {
-        const student = await Post.findById(req.query.s).populate('school')
+        const student = await Student.findById(req.query.s).populate('school')
         return res.status(200).send(student)
       }
 
@@ -19,7 +20,7 @@ const studentController = {
 
   async find(req, res) {
       try {
-        const student = await Post.findById(studentId).populate('school')
+        const student = await Student.findById(studentId).populate('school')
         return res.status(200).send(student)    
       } catch (err) {
           return res.status(400).send({ message: err })
@@ -28,6 +29,9 @@ const studentController = {
 
   async create(req, res) {
     try {
+      const { school } = req.body
+      const instituicao = await School.find({name: school})
+      req.body.school = instituicao._id
       const student = await Student.create(req.body)
       const token = await jwt.sign({ id: student._id }, process.env.SECRET, {
         expiresIn: '1d',
