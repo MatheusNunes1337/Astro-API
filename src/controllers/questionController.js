@@ -48,11 +48,10 @@ const questionController = {
 
     const { answer } =  req.body
 
-
     try {
        const question = await Question.findById(req.params.id)
        if(question.answer === answer) {
-           student = await Student.findByIdAndUpdate(req.studentId, {$inc : {'acertos' : 1}}, {new: true})
+          await Student.findByIdAndUpdate(req.studentId, {$inc : {'acertos' : 1}}, {new: true})
        }
        return res.status(200).send()
     } catch(err) {
