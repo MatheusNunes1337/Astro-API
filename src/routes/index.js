@@ -18,7 +18,7 @@ routes.use('/student', studentRoute)
 routes.use('/admin', adminRoute)
 routes.use('/book', bookRoute)
 routes.use('/quiz', quizRoute)
-// routes.use(auth)
+routes.use(auth)
 routes.use('/school', schoolRoute)
 routes.use('/post', postRoute)
 

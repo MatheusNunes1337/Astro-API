@@ -6,10 +6,10 @@ import questionController from '../controllers/questionController'
 const questionRoute = Router()
 
 questionRoute.get('/', questionController.index)
-questionRoute.post('/', questionController.create) // auth
+questionRoute.post('/', auth, questionController.create) // auth
 questionRoute.post('/:id', student, questionController.answer)
-questionRoute.delete('/:id', questionController.delete) // auth
-questionRoute.put('/:id', questionController.update) //auth
+questionRoute.delete('/:id', auth, questionController.delete) // auth
+questionRoute.put('/:id', auth, questionController.update) //auth
 
 
 export default questionRoute

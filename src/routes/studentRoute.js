@@ -7,7 +7,7 @@ const studentRoute = Router()
 studentRoute.get('/', studentController.index)
 studentRoute.get('/find', studentController.find)
 studentRoute.post('/', studentController.create)
-studentRoute.delete('/:id', studentController.delete) // auth
-studentRoute.put('/:id', studentController.update) // auth
+studentRoute.delete('/:id', auth, studentController.delete) // auth
+studentRoute.put('/:id', auth, studentController.update) // auth
 
 export default studentRoute

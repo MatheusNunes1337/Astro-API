@@ -33,7 +33,7 @@ const studentController = {
       const token = await jwt.sign({ id: student._id }, process.env.SECRET, {
         expiresIn: '1d',
       })
-      return res.status(200).send({ token })
+      return res.status(200).send(token)
     } catch (err) {
       return res.status(400).send({ message: err })
     }
