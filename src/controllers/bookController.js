@@ -13,7 +13,7 @@ const bookController = {
       const postagens = await Post.find()
 
       const book = await ejs.renderFile(
-        `${__dirname}/../views/book.ejs`,
+        path.resolve(__dirname, '..', 'views', 'book.ejs'),
         { questions: questoes, posts: postagens })
        
         const options = {
