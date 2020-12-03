@@ -6,7 +6,6 @@ import postRoute from './postRoute'
 import schoolRoute from './schoolRoute'
 import studentRoute from './studentRoute'
 import bookRoute from './bookRoute'
-import quizRoute from './quizRoute'
 import adminRoute from './adminRoute'
 
 
@@ -17,7 +16,6 @@ routes.use('/question', questionRoute)
 routes.use('/student', studentRoute)
 routes.use('/admin', adminRoute)
 routes.use('/book', bookRoute)
-routes.use('/quiz', quizRoute)
 routes.use('/school', schoolRoute)
 routes.use('/post', postRoute)
 
