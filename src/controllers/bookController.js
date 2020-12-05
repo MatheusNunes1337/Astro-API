@@ -7,7 +7,7 @@ import * as pdf from 'html-pdf'
 import * as ejs from 'ejs'
 
 const bookController = {
-  async create(req, res) {
+  async download(req, res) {
     try {
       const questoes = await Question.find()
       const postagens = await Post.find()
@@ -31,19 +31,15 @@ const bookController = {
           path.resolve(__dirname, '..', 'assets', 'material', 'apostila.pdf'), 
           function(err, res){
             if (err) return console.log(err);
-            console.log(res)
-        })  
+            console.log('pdf gerado com sucesso')
+        }) 
 
-      return res.status(200).send({ message: 'pdf gerado com sucesso' })
+      const apostila = path.resolve(__dirname, '..', 'assets', 'material', 'apostila.pdf')
+      return res.status(200).download(apostila)  
     } catch (err) {
       return res.status(400).send({ message: err })
     }
-  },
-
-  async download(req, res) {
-    const apostila = path.resolve(__dirname, '..', 'assets', 'material', 'apostila.pdf')
-    res.status(200).download(apostila)
-  },
+  }
 }
 
 export default bookController
