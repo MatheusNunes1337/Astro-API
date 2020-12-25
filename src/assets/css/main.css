@@ -12,6 +12,7 @@ body {
 
 h2 {
 	margin-bottom: 30px;
+	color: blue;
 }
 
 .post {
@@ -24,6 +25,7 @@ article  {
 
 article h3 {
 	margin: 15px 0 15px 0;
+	color: yellow;
 }
 
 .question ol, .post ol {
@@ -41,3 +43,10 @@ article h3 {
 .question {
 	margin-bottom: 15px;
 }
+
+
+/*
+@media only screen and (max-width: 1366px) {
+
+}
+*/

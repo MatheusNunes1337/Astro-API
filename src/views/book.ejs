@@ -3,11 +3,71 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="../assets/css/main.css">
 	<title></title>
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+		
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Roboto', sans-serif;
+		}
+
+		.post {
+			margin: 45px 0px;
+		}
+
+		article  {
+			margin: 15px 40px;
+		} 
+
+		article h3 {
+			margin: 15px 0 15px 0;
+		}
+
+		article > h1 {
+			margin-bottom: 30px;
+			font-size: 30px;
+		}
+
+		.question ol, .post ol {
+			margin: 9px 0px;
+		}
+
+		section.post > p {
+			margin: 7px 0px 7px 0px;
+			font-size: 13px;
+			text-align: justify;
+		}
+
+		section.post > h1 {
+			font-size: 22px;
+		}
+
+		section.post > h2  {
+			font-size: 19px;
+		}
+
+		section.question ol > li, section.post ol > li, section.question span {
+			font-size: 13px;
+		}
+
+		section.question ol > li, section.post ol > li {
+			margin-left: 18px;
+		}
+
+		.question {
+			margin-bottom: 15px;
+		}
+
 	</style>
 </head>
 <body>
 	<article>
-		<h2>Astro</h2>
+		<h1>Astrooooo</h1>
 		<% posts.forEach( post => { %>
 			<section class="post">
 				<%- post.conteudo %>
