@@ -1,3 +1,6 @@
+import dotenv from 'dotenv'
+import * as jwt from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
 import School from '../models/school'
 
 const schoolController = {
@@ -19,10 +22,32 @@ const schoolController = {
   async create(req, res) {
     try {
       const school = await School.create(req.body)
-      return res.status(200).send({message: "Instituição cadastrada com sucesso"})
+      return res.status(200).send({message: 'Instituição cadastrada com sucesso.'})
     } catch (err) {
       return res.status(400).send({ message: err })
     }
+  },
+
+  async login(req, res) {
+    const { email_resp, password } = req.body
+    try {
+        const school = await School.findOne({ email_resp }).select('password')
+
+        if (!school)
+          return res
+            .status(400)
+            .send({ message: 'O email informado está incorreto.' })
+
+        if (!(await bcrypt.compare(password, school.password)))
+          return res.status(400).send({ message: 'A senha informada está incorreta.' })
+        
+        const token = await jwt.sign({ id: school._id }, process.env.SECRET, {
+          expiresIn: '1d',
+        })
+        return res.status(200).send(token)
+    } catch(err) {
+        return res.status(400).send({ message: err }) 
+    }  
   },
 
   async update(req, res) {
