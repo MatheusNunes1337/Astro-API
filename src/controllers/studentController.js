@@ -27,6 +27,15 @@ const studentController = {
       }
   },
 
+  async findBySchool(req, res) {
+      try {
+        const students = await Student.find({school: req.schoolId})
+        return res.status(200).send(students)    
+      } catch (err) {
+          return res.status(400).send({ message: err })
+      }
+  },
+
   async create(req, res) {
     try {
       const student = await Student.create(req.body)
