@@ -35,7 +35,8 @@ const bookController = {
         }) 
 
       const apostila = path.resolve(__dirname, '..', 'assets', 'material', 'apostila.pdf')
-      return res.status(200).download(apostila)  
+      //return res.status(200).download(apostila) 
+      return res.status(200).send({'message': 'recurso desabilitado temporariamente'})  
     } catch (err) {
       return res.status(400).send({ message: err })
     }
