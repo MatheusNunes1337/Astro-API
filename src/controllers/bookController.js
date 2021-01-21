@@ -7,7 +7,7 @@ import * as pdf from 'html-pdf'
 import * as ejs from 'ejs'
 
 const bookController = {
-  async download(req, res) {
+  async generate(req, res) {
     try {
       const questoes = await Question.find()
       const postagens = await Post.find()
@@ -32,12 +32,18 @@ const bookController = {
           function(err, res){
             if (err) return console.log(err);
             console.log('pdf gerado com sucesso')
-        }) 
-
-      const apostila = path.resolve(__dirname, '..', 'assets', 'material', 'apostila.pdf')
-      //return res.status(200).download(apostila) 
-      return res.status(200).send({'message': 'recurso desabilitado temporariamente'})  
+        })
+        return res.status(200).send({message: 'material gerado com sucesso'}) 
     } catch (err) {
+      return res.status(400).send({ message: err })
+    }
+  },
+  async download(req, res) {
+    try {
+      const apostila = path.resolve(__dirname, '..', 'assets', 'material', 'apostila.pdf')
+      return res.status(200).download(apostila)
+      //return res.status(200).send({'message': 'recurso desabilitado temporariamente'}) 
+    } catch(err) {
       return res.status(400).send({ message: err })
     }
   }

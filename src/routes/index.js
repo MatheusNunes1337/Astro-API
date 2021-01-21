@@ -7,7 +7,7 @@ import schoolRoute from './schoolRoute'
 import studentRoute from './studentRoute'
 import bookRoute from './bookRoute'
 import adminRoute from './adminRoute'
-import emailRoute from './emailRoute'
+import recoverRoute from './emailRoute'
 
 
 const routes = Router()
@@ -15,6 +15,7 @@ const routes = Router()
 routes.use('/auth', authRoute)
 routes.use('/question', questionRoute)
 routes.use('/student', studentRoute)
+routes.use('/recover', recoverRoute)
 routes.use('/admin', adminRoute)
 routes.use('/book', bookRoute)
 routes.use('/school', schoolRoute)

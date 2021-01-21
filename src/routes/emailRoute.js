@@ -2,9 +2,9 @@ import Router from 'express'
 import School from '../models/school'
 import transporter from '../config/nodemailer'
 
-const emailRoute = Router()
+const recoverRoute = Router()
 
-emailRoute.post('/recoverPass', async (req, res) => {
+recoverRoute.post('/pass', async (req, res) => {
 	try {
 		const school_info = await School.findOne({email_resp: req.body.email_resp})
 		if(!school_info)
@@ -25,4 +25,4 @@ emailRoute.post('/recoverPass', async (req, res) => {
 })
 
 
-export default emailRoute
+export default recoverRoute
