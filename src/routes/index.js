@@ -7,7 +7,7 @@ import schoolRoute from './schoolRoute'
 import studentRoute from './studentRoute'
 import bookRoute from './bookRoute'
 import adminRoute from './adminRoute'
-import recoverRoute from './emailRoute'
+import recoverRoute from './recoverRoute'
 
 
 const routes = Router()
