@@ -13,6 +13,7 @@ recoverRoute.get('/pass', async (req, res) => {
 		const { email_resp } = school_info
 
 		const email = await transporter.sendMail({
+			
 			from: "Astro support <astro.suporte.2021@gmail.com",
 			to: email_resp,
 			subject: "Recuperação da senha de acesso",

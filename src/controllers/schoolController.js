@@ -59,6 +59,17 @@ const schoolController = {
     }
   },
 
+  async updatePassword(req, res) {
+    try {
+      let {email_resp, password} = req.body
+      password = await bcrypt.hash(password, 10)
+      const school = await School.findOneAndUpdate({ email_resp }, { password })
+      return res.status(200).send({message: 'Senha redefinida com sucesso'})
+    } catch (err) {
+      return res.status(400).send({ message: err })
+    }
+  },
+
   async delete(req, res) {
     try {
       await School.findByIdAndDelete(req.params.id)
