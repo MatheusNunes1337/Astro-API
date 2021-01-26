@@ -4,7 +4,7 @@ import transporter from '../config/nodemailer'
 
 const recoverRoute = Router()
 
-recoverRoute.get('/pass', async (req, res) => {
+recoverRoute.post('/pass', async (req, res) => {
 	try {
 		const school_info = await School.findOne({email_resp: req.body.email_resp})
 		if(!school_info)
