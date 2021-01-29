@@ -10,7 +10,7 @@ studentRoute.get('/', studentController.index)
 studentRoute.get('/find', student, studentController.find)
 studentRoute.get('/findBySchool', school, studentController.findBySchool)
 studentRoute.post('/', studentController.create)
-studentRoute.delete('/:id', auth, studentController.delete) // auth
-studentRoute.put('/:id', auth, studentController.update) // auth
+studentRoute.delete('/:id', auth, studentController.delete) 
+studentRoute.put('/:id', auth, studentController.update)
 
 export default studentRoute

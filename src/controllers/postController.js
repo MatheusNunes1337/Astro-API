@@ -1,6 +1,3 @@
-import * as fs from 'fs'
-import { promisify } from 'util'
-import * as path from 'path'
 import Post from '../models/post'
 
 const postController = {
@@ -21,21 +18,6 @@ const postController = {
   async create(req, res) {
 
     try {
-
-      /*
-      if(req.files) {
-        let files
-
-        files = req.files.map(async (file) => {
-          // eslint-disable-next-line prefer-const
-          let arquivo = await File.create({ filename: file.filename })
-          return arquivo._id
-        })
-
-        req.body.files = await Promise.all(files)
-      }
-      */  
-
       await Post.create(req.body)
       return res.status(200).send({message: 'Post criado com sucesso'})
     } catch (err) {
@@ -46,38 +28,6 @@ const postController = {
 
   async update(req, res) {
     try {
-      /*
-      if (req.files) {
-        const post = await Post.findById(req.params.id).populate('files')
-        if (post.files.length !== 0) {
-          await File.deleteMany({ _id: post.files })
-          post.files.map(async (arquivo) => {
-            return promisify(fs.unlink)(
-              path.resolve(
-                __dirname,
-                '..',
-                '..',
-                'public',
-                'images',
-                arquivo.filename
-              )
-            )
-          })
-        }
-
-        let files
-
-        files = req.files.map(async (file) => {
-          // eslint-disable-next-line prefer-const
-          let arquivo = await File.create({ filename: file.filename })
-          return arquivo._id
-        })
-
-        req.body.files = await Promise.all(files)
-      }
-
-      */
-
       const post = await Post.findByIdAndUpdate(
         req.params.id,
         { ...req.body },
