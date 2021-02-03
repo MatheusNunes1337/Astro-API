@@ -29,7 +29,7 @@ const studentController = {
 
   async findBySchool(req, res) {
       try {
-        const students = await Student.find({school: req.schoolId})
+        const students = await Student.find({school: req.schoolId}).sort({name: 1})
         return res.status(200).send(students)    
       } catch (err) {
           return res.status(400).send({ message: err })
