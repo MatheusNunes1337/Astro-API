@@ -18,6 +18,9 @@ const questionSchema = new Schema({
   answer: {
     type: String,
   },
+  fullAnswer: {
+    type: String,
+  }
 })
 
 const Question = mongoose.model('Question', questionSchema)
