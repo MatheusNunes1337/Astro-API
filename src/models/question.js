@@ -10,6 +10,9 @@ const questionSchema = new Schema({
   category: {
     type: String,
   },
+  difficulty: {
+    type: String
+  },
   options: [
     {
       type: String,
