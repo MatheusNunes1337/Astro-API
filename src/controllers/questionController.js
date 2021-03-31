@@ -10,6 +10,11 @@ const questionController = {
           return res.status(200).send(question)
       }
 
+      if (req.query.level) {
+        const questions = await Question.find({ difficulty: req.query.level})
+        return res.status(200).send(questions)
+      }
+
       const questions = await Question.find()
       return res.status(200).send(questions)
     } catch (err) {
