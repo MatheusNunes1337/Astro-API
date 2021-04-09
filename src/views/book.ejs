@@ -33,6 +33,11 @@
 			font-size: 30px;
 		}
 
+		article > h2 {
+			margin-bottom: 30px;
+			font-size: 24px;
+		}
+
 		.question ol, .post ol {
 			margin: 9px 0px;
 		}
@@ -43,12 +48,17 @@
 			text-align: justify;
 		}
 
+		section.post img {
+			object-fit: contain;
+		}
+
 		section.post > h1 {
 			font-size: 21px;
 		}
 
 		section.post > h2  {
-			font-size: 19px;
+			font-size: 17.5px;
+			margin-top: 15px;
 		}
 
 		section.question ol > li, section.post ol > li, section.question span {
@@ -67,13 +77,14 @@
 </head>
 <body>
 	<article>
-		<h1>Astrooooo</h1>
+		<h1>Astro</h1>
+		<h2>Planetas</h2>
 		<% posts.forEach( post => { %>
 			<section class="post">
 				<%- post.conteudo %>
 			</section>
 		<% }) %>
-		<h3>Respostas do quiz</h3>
+		<h2>Respostas do quiz</h2>
 		<% questions.forEach((question, index) => { %>
 			<section class="question">
 				<p><%= index+1 + " - " + question.question %></p>
