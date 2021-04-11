@@ -40,7 +40,7 @@ const studentController = {
     try {
       const student = await Student.create(req.body)
       const token = await jwt.sign({ id: student._id }, process.env.SECRET, {
-        expiresIn: '1d',
+        expiresIn: '1h',
       })
       return res.status(200).send(token)
     } catch (err) {
