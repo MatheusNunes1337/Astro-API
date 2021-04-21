@@ -56,7 +56,7 @@ const questionController = {
     try {
        const question = await Question.findById(req.params.id)
        if(question.answer === answer) {
-          await Student.findByIdAndUpdate(req.studentId, {$inc : {'acertos' : 1}}, {new: true})
+          await Student.findByIdAndUpdate(req.studentId, {$push : { acertos : req.params.id}}, {new: true})
        }
        return res.status(200).send()
     } catch(err) {
