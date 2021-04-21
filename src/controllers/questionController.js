@@ -67,7 +67,7 @@ const questionController = {
     try {
       const student = await Student.findByIdAndUpdate(
         req.params.id,
-        { $set: {acertos: 0}}
+        { $set: {acertos: []}}
       )
       return res.status(200).send()
     } catch (err) {
