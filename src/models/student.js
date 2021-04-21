@@ -1,5 +1,6 @@
 import mongoose from '../database'
 import School from './school'
+import Question from './question'
 
 const { Schema } = mongoose
 
@@ -15,11 +16,10 @@ const studentSchema = new Schema({
     // eslint-disable-next-line prettier/prettier
     ref: 'School'
   },
-  acertos: {
-    // eslint-disable-next-line prettier/prettier
-    type: Number,
-    default: 0,
-  },
+  acertos: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Question'
+  }],
 })
 
 const Student = mongoose.model('Student', studentSchema)
