@@ -39,7 +39,7 @@ const bookController = {
         
         materiais.map((material, i) => {
           pdf.create(material, options).toFile(
-            path.resolve(__dirname, '..', 'assets', 'material', `material${i + 1}.pdf`), 
+            path.resolve(__dirname, '..', 'assets', 'materials', `material${i + 1}.pdf`), 
             function(err, res){
               if (err) return console.log(err);
               console.log('material gerado com sucesso')
@@ -52,10 +52,18 @@ const bookController = {
     }
   },
   async download(req, res) {
+    const {material_type } = req.body
+    let filename
     try {
-      const apostila = path.resolve(__dirname, '..', 'assets', 'material', 'apostila.pdf')
-      return res.status(200).download(apostila)
-      //return res.status(200).send({'message': 'recurso desabilitado temporariamente'}) 
+      if(material_type == 'completo')
+          filename = 'material1'
+      else if(material_type == 'conteudo_perguntas')
+          filename = 'material2'
+      else  
+          filename = 'material3'        
+
+      const material = path.resolve(__dirname, '..', 'assets', 'materials', `${filename}.pdf`)
+      return res.status(200).download(material)
     } catch(err) {
       return res.status(400).send({ message: err })
     }
