@@ -52,17 +52,8 @@ const bookController = {
     }
   },
   async download(req, res) {
-    const {material_type } = req.body
-    let filename
-    try {
-      if(material_type == 'completo')
-          filename = 'material1'
-      else if(material_type == 'conteudo_perguntas')
-          filename = 'material2'
-      else  
-          filename = 'material3'        
-
-      const material = path.resolve(__dirname, '..', 'assets', 'materials', `${filename}.pdf`)
+    try {     
+      const material = path.resolve(__dirname, '..', 'assets', 'materials', `${req.query.material}.pdf`)
       return res.status(200).download(material)
     } catch(err) {
       return res.status(400).send({ message: err })
