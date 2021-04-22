@@ -12,9 +12,17 @@ const bookController = {
       const questoes = await Question.find()
       const postagens = await Post.find()
 
-      const book = await ejs.renderFile(
-        path.resolve(__dirname, '..', 'views', 'book.ejs'),
+      const material_completo = await ejs.renderFile(
+        path.resolve(__dirname, '..', 'views', 'material_completo.ejs'),
         { questions: questoes, posts: postagens })
+
+      const conteudo_perguntas = await ejs.renderFile(
+        path.resolve(__dirname, '..', 'views', 'conteudo_perguntas.ejs'),
+        { questions: questoes, posts: postagens })
+          
+      const conteudo = await ejs.renderFile(
+        path.resolve(__dirname, '..', 'views', 'conteudo.ejs'),
+        { posts: postagens })    
        
         const options = {
           type: 'pdf',
@@ -25,15 +33,20 @@ const bookController = {
             top: "1in",            
             bottom: "1in"
           }
-        }  
+        }
         
-        pdf.create(book, options).toFile(
-          path.resolve(__dirname, '..', 'assets', 'material', 'apostila.pdf'), 
-          function(err, res){
-            if (err) return console.log(err);
-            console.log('pdf gerado com sucesso')
+        const materiais = [material_completo, conteudo_perguntas, conteudo]
+        
+        materiais.map((material, i) => {
+          pdf.create(material, options).toFile(
+            path.resolve(__dirname, '..', 'assets', 'material', `material${i + 1}.pdf`), 
+            function(err, res){
+              if (err) return console.log(err);
+              console.log('material gerado com sucesso')
+          })
         })
-        return res.status(200).send({message: 'material gerado com sucesso'}) 
+
+        return res.status(200).send({message: 'materiais gerados com sucesso'}) 
     } catch (err) {
       return res.status(400).send({ message: err })
     }
