@@ -38,7 +38,7 @@
 			font-size: 22px;
 		}
 
-		.question ol, .post ol {
+        .post ol {
 			margin: 9px 0px;
 		}
 
@@ -62,16 +62,12 @@
 			margin-top: 20px;
 		}
 
-		section.question ol > li, section.post ol > li, section.question span {
+	     section.post ol > li {
 			font-size: 14px;
 		}
 
-		section.question ol > li, section.post ol > li {
+		 section.post ol > li {
 			margin-left: 18px;
-		}
-
-		.question {
-			margin-bottom: 15px;
 		}
 
 	</style>
@@ -83,19 +79,6 @@
 		<% posts.forEach( post => { %>
 			<section class="post">
 				<%- post.conteudo %>
-			</section>
-		<% }) %>
-		<h2>Respostas do quiz</h2>
-		<% questions.forEach((question, index) => { %>
-			<section class="question">
-				<p><%= index+1 + " - " + question.question %></p>
-				<ol style="list-style-type: lower-latin">
-					<% question.options.forEach( option => { %>
-						<li><%= option %></li>
-					<% }) %>
-				</ol>
-				<span>Resposta:</span>
-				<span><%= question.answer %></span>
 			</section>
 		<% }) %>
 	</article>
