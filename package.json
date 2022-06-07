@@ -9,8 +9,12 @@
     "build": "babel src -d dist --copy-files",
     "start": "node dist/index"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "astronomia",
+    "planetas",
+    "sistema solar"
+  ],
+  "author": "Matheus Nunes",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.0",

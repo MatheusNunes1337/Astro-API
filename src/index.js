@@ -10,8 +10,11 @@ dotenv.config()
 app.use(express.json())
 
 // cors
-app.use(cors())
-app.options('*', cors())
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*')
+  app.use(cors())
+  next()
+})
 
 // static files
 // app.use(express.static('./public'))
