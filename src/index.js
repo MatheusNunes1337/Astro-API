@@ -10,11 +10,8 @@ dotenv.config()
 app.use(express.json())
 
 // cors
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://astrooo.herokuapp.com')
-  app.use(cors())
-  next()
-})
+app.use(cors())
+app.options('*', cors())
 
 // static files
 // app.use(express.static('./public'))
