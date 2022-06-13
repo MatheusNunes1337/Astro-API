@@ -1,33 +1,35 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import routes from './routes'
+
 require('./database')
 
 const cors = require('cors')
+
 dotenv.config()
 
 class AppController {
-    constructor() {
-        this.express = express()
-        this.middlewares()
-        this.views()
-        this.routes()
-    }
+  constructor() {
+    this.express = express()
+    this.middlewares()
+    this.views()
+    this.routes()
+  }
 
-    middlewares() {
-        this.express.use(express.json())
-        this.express.use(cors())
-        this.express.options('*', cors())
-    }
+  middlewares() {
+    this.express.use(express.json())
+    this.express.use(cors())
+    this.express.options('*', cors())
+  }
 
-    views() {
-        this.express.set('view engine', 'ejs')
-        this.express.set('views', './src/views')
-    }
+  views() {
+    this.express.set('view engine', 'ejs')
+    this.express.set('views', './src/views')
+  }
 
-    routes() {
-        this.express.use(routes)
-    }
+  routes() {
+    this.express.use(routes)
+  }
 }
 
 /*
