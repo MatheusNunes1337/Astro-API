@@ -12,6 +12,7 @@ class AppController {
   constructor() {
     this.express = express()
     this.middlewares()
+    this.cors()
     this.views()
     this.routes()
   }
@@ -25,6 +26,17 @@ class AppController {
   views() {
     this.express.set('view engine', 'ejs')
     this.express.set('views', './src/views')
+  }
+
+  cors() {
+    this.express.use(function (req, res, next) {
+      res.header('Access-Control-Allow-Origin', '*')
+      res.header(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept'
+      )
+      next()
+    })
   }
 
   routes() {
