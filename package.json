@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "dev": "nodemon --exec babel-node src/index --ignore __tests__",
+    "dev": "nodemon --exec babel-node src/server --ignore __tests__",
     "build": "babel src -d dist --copy-files",
-    "start": "node dist/index"
+    "start": "node dist/server"
   },
   "keywords": [
     "astronomia",

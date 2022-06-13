@@ -3,7 +3,10 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production') {
+if (
+  process.env.NODE_ENV === 'development' ||
+  process.env.NODE_ENV === 'production'
+) {
   mongoose
     .connect(process.env.MONGO_URL, {
       useNewUrlParser: true,
